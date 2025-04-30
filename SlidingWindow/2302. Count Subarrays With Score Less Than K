@@ -1,0 +1,19 @@
+class Solution {
+    public long countSubarrays(int[] nums, long k) {
+        int l = 0, r = 0;
+        long subcount = 0, mul = 1, sum = 0;
+        int n = nums.length;
+        while (r < n) {
+            sum = sum + nums[r];
+            while ((sum * mul) >= k) {
+                sum = sum - nums[l];
+                mul--;
+                l++;
+            }
+            mul++;
+            subcount = subcount + (r - l + 1);
+            r++;
+        }
+        return subcount;
+    }
+}
